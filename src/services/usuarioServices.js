@@ -24,9 +24,9 @@ function criarUsuarios(nome) {
 
 };
 
-function deletarUsuario(id) {
+function deletarUsuario(usuarios) {
 
-    usuarios.filter();
+    usuarios.filter(usuario => usuario.id !== id);
 };
 
 
