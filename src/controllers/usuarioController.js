@@ -30,8 +30,22 @@ function deletarUsuario (req, res) {
     });
 }   
 
+function editarUsuario (req, res) {
+
+    const id = Number(req.params.id);
+
+    const nome = req.body.nome;
+
+    usuarioService.editarUsuario(id, nome);
+
+    res.json ({
+        mensagem: "Usuário atualizado"
+    });
+}
+
 module.exports = {
     listarUsuarios,
     criarUsuarios,
-    deletarUsuario
+    deletarUsuario,
+    editarUsuario
 }

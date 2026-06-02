@@ -7,6 +7,8 @@ router.get("/", usuarioController.listarUsuarios);
 
 router.post("/", usuarioController.criarUsuarios);
 
-router.delete("/", usuarioController.deletarUsuario);
+router.delete("/:id", usuarioController.deletarUsuario);
+
+router.put("/:id", usuarioController.editarUsuario);
 
 module.exports = router;

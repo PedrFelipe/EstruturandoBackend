@@ -24,15 +24,26 @@ function criarUsuarios(nome) {
 
 };
 
-function deletarUsuario(usuarios) {
+function deletarUsuario(id) {
 
-    usuarios.filter(usuario => usuario.id !== id);
+    usuarios = usuarios.filter(
+        usuario => usuario.id !== id
+    );
 };
 
+function editarUsuario (id, nome) {
 
+ const usuario = usuarios.find(
+        usuario => usuario.id === id
+    );
+
+            usuario.nome = nome;
+    
+};
 
 module.exports = {
     listarUsuarios,
     criarUsuarios,
-    deletarUsuario
+    deletarUsuario,
+    editarUsuario
 }
