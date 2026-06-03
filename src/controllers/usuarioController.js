@@ -43,9 +43,20 @@ function editarUsuario (req, res) {
     });
 }
 
+function procurarUsuario (req, res) {
+
+    const id = Number(req.params.id)
+
+    const usuario = usuarioService.procurarUsuario(id);
+
+    res.json(usuario);
+
+}
+
 module.exports = {
     listarUsuarios,
     criarUsuarios,
     deletarUsuario,
-    editarUsuario
+    editarUsuario,
+    procurarUsuario
 }

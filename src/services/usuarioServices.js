@@ -15,6 +15,7 @@ function listarUsuarios() {
     return usuarios;
 };
 
+
 function criarUsuarios(nome) {
 
     usuarios.push({
@@ -37,13 +38,24 @@ function editarUsuario (id, nome) {
         usuario => usuario.id === id
     );
 
-            usuario.nome = nome;
+    usuario.nome = nome;
     
+};
+
+function procurarUsuario(id, nome){
+
+    const usuario = usuarios.find(
+        usuario => usuario.id === id
+    );
+
+    return usuario
+
 };
 
 module.exports = {
     listarUsuarios,
     criarUsuarios,
     deletarUsuario,
-    editarUsuario
+    editarUsuario,
+    procurarUsuario
 }
