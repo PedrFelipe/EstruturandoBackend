@@ -1,17 +1,17 @@
 const usuarioService = require("../services/usuarioServices")
 
-function listarUsuarios (req,res) {
+async function listarUsuarios (req,res) {
 
-    const usuarios = usuarioService.listarUsuarios();
+    const usuarios = await usuarioService.listarUsuarios();
 
     res.json(usuarios);
 }
 
-function criarUsuarios (req, res) {
+async function criarUsuarios (req, res) {
 
     const nome = req.body.nome;
 
-    usuarioService.criarUsuarios(nome);
+    await usuarioService.criarUsuarios(nome);
 
     res.json({
         mensagem: "Usuário criado"
@@ -19,35 +19,35 @@ function criarUsuarios (req, res) {
 
 }
 
-function deletarUsuario (req, res) {
+async function deletarUsuario (req, res) {
 
     const id = Number(req.params.id);
 
-    usuarioService.deletarUsuario(id);
+    await usuarioService.deletarUsuario(id);
 
     res.json({
         mensagem: "Usuário removido"
     });
 }   
 
-function editarUsuario (req, res) {
+async function editarUsuario (req, res) {
 
     const id = Number(req.params.id);
 
     const nome = req.body.nome;
 
-    usuarioService.editarUsuario(id, nome);
+    await usuarioService.editarUsuario(id, nome);
 
     res.json ({
         mensagem: "Usuário atualizado"
     });
 }
 
-function procurarUsuario (req, res) {
+async function procurarUsuario (req, res) {
 
     const id = Number(req.params.id)
 
-    const usuario = usuarioService.procurarUsuario(id);
+    const usuario = await usuarioService.procurarUsuario(id);
 
     res.json(usuario);
 

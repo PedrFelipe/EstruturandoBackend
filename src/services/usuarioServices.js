@@ -1,4 +1,5 @@
-let usuarios = [
+const pool = require("../config/database");
+/*let usuarios = [
     
         {
             id: 1,
@@ -10,45 +11,74 @@ let usuarios = [
         }
     
     ];
+*/
 
-function listarUsuarios() {
-    return usuarios;
+async function listarUsuarios() {
+//  return usuarios;
+    const resultado = await pool.query(
+        "SELECT * FROM usuarios ORDER BY id ASC;"
+    );
+    return resultado.rows;
+
 };
 
 
-function criarUsuarios(nome) {
-
-    usuarios.push({
+async function criarUsuarios(nome) {
+   /* usuarios.push({
         id: usuarios.length + 1,
         nome: nome
     });
+    */
+    const resultado = await pool.query(
+        "INSERT INTO usuarios (nome) VALUES ($1);",
+        [nome]
+    );
+    return resultado.rows;
 
 };
 
-function deletarUsuario(id) {
-
+async function deletarUsuario(id) {
+/*
     usuarios = usuarios.filter(
         usuario => usuario.id !== id
     );
+*/
+    const resultado = await pool.query(
+        "DELETE FROM usuarios WHERE id = $1;",
+        [id]
+    );
+    return resultado.rows;
+    
 };
 
-function editarUsuario (id, nome) {
-
+async function editarUsuario (id, nome) {
+/*
  const usuario = usuarios.find(
         usuario => usuario.id === id
     );
 
     usuario.nome = nome;
-    
+*/
+    const resultado = await pool.query(
+            "UPDATE usuarios SET nome = $1 WHERE id = $2;",
+            [nome, id]
+    );
+
 };
 
-function procurarUsuario(id, nome){
-
+async function procurarUsuario(id){
+/*
     const usuario = usuarios.find(
         usuario => usuario.id === id
     );
 
     return usuario
+*/
+const resultado = await pool.query(
+    "SELECT * FROM usuarios WHERE id = $1",
+    [id]
+);
+return resultado.rows;
 
 };
 
